@@ -17,9 +17,13 @@
 	let id = null;
 
 	const proc = () => {
-		clearTimeout(id);
-		window.location.reload();
-		id = setTimeout(proc, 30000);
+        clearTimeout(id);
+
+        if(id) {
+            console.debug("RELOAD");
+            window.location.reload();
+        }
+        id = setTimeout(proc, 30000);
 	};
 
 	proc();
