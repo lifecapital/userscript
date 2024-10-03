@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         ipharmacy_autorefresh
 // @namespace    http://lifecapital.eg
-// @version      0.7
+// @version      0.8
 // @description  I-Pharmacy Autorefresh
 // @author       Mustafa Elmalah
 // @match 		 https://portal.i-pharmacy.app/app/home
@@ -18,19 +18,19 @@
 
 	const urls = [
 		"https://portal.i-pharmacy.app/app/home",
-		"https://portal.i-pharmacy.app/app/home/"
 	];
 
 	const proc = () => {
 		if(id)
 			clearTimeout(id);
 
-		if(urls.indexOf(window.location) !== -1) {
+		if(urls.indexOf(window.location.href.replace(/\/$/, "")) !== -1) {
 			if(id) {
 				console.debug("RELOAD");
 				window.location.reload();
 			}
 		}
+
 		id = setTimeout(proc, 30000);
 		console.debug("REARMED");
 	};
